@@ -30,11 +30,26 @@ async function loadConfig(force = false) {
 
 // Helper to call Telegram API
 async function telegram(method, body) {
-  return fetch(`${API}/${method}`, {
+  const response = await fetch(`${API}/${method}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body)
-  })
+  });
+
+  const data = await response.json();
+
+  console.log("[Telegram API]", {
+    method,
+    httpStatus: response.status,
+    ok: data.ok,
+    errorCode: data.error_code,
+    description: data.description,
+  });
+
+  if (data.ok) {
+      return new Response("OK!")
+  }
+  return new Response("TG Error!")
 }
 
 export default {
@@ -42,6 +57,7 @@ export default {
     if (req.method !== "POST") return new Response("OK")
 
     const update = await req.json()
+    console.log(`Handle update: ${JSON.stringify(update)}`)
 
     /* =======================
        INLINE MODE
