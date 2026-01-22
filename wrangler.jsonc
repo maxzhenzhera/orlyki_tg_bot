@@ -1,0 +1,5 @@
+{
+    "name": "orlyki_tg_bot",
+    "compatibility_date": "2026-01-22",
+    "main": "src/index.js"
+}
