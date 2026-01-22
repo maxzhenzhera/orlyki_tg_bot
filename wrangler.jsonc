@@ -1,4 +1,9 @@
 {
+    "$schema": "./node_modules/wrangler/config-schema.json",
+    "observability": {
+        "enabled": true,
+        "head_sampling_rate": 1
+    },
     "name": "orlyki-tg-bot",
     "compatibility_date": "2026-01-22",
     "main": "src/index.js"
