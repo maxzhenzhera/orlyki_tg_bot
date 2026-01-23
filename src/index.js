@@ -19,6 +19,7 @@ let cacheTime = 0
 // Load JSON config from GitHub or cache
 async function loadConfig(force = false) {
   if (!audioCache || force || Date.now() - cacheTime > CACHE_TTL) {
+    console.log(`Get voices: ${CONFIG_URL}`)
     const res = await fetch(CONFIG_URL, {
       headers: { "User-Agent": "cf-worker-bot" }
     })
